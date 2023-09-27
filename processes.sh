@@ -13,12 +13,11 @@ fulload() {
   dd if=/dev/zero of=/dev/null &
 };
 
-fulload; 
-ld=`cat /proc/loadavg | echo "$(awk -F " " '{ print $1 }') > 50" | bc`
-echo $ld
+ld=0
 
 while [ "${ld} -ne 1" ]; do
-    fulload; 
+    #fulload; 
+    dd if=/dev/zero of=/dev/null &
     ld=`cat /proc/loadavg | echo "$(awk -F " " '{ print $1 }') > 50" | bc`
     echo "ld - $ld"
 done
