@@ -3,12 +3,4 @@
 set -B
 set -x
 
-fulload() {
-  dd if=/dev/zero of=/dev/null |
-  dd if=/dev/zero of=/dev/null |
-  dd if=/dev/zero of=/dev/null |
-  dd if=/dev/zero of=/dev/null &
-};
-
-fulload
-#fulload; read; killall dd
+for i in 1 2 3 4; do while : ; do : ; done & done
