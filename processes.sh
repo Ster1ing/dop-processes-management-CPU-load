@@ -3,4 +3,20 @@
 set -B
 set -x
 
-for i in 1 2 3 4; do while : ; do : ; done & done
+fulload() {
+  dd if=/dev/zero of=/dev/null |
+  dd if=/dev/zero of=/dev/null |
+  dd if=/dev/zero of=/dev/null |
+  dd if=/dev/zero of=/dev/null &
+};
+
+fulload; read; 
+ld=`cat /proc/loadavg | echo "$(awk -F " " '{ print $1 }') > 50" | bc`
+
+while ! [ "${ld} -ne 1" ]; do
+    sleep 5
+    ld=`cat /proc/loadavg | echo "$(awk -F " " '{ print $1 }') > 50" | bc`
+done
+
+killall dd
+#fulload; read; killall dd
