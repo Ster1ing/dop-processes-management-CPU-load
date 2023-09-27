@@ -15,11 +15,12 @@ fulload() {
 
 fulload; 
 ld=`cat /proc/loadavg | echo "$(awk -F " " '{ print $1 }') > 50" | bc`
-
 echo $ld
 
-while [ "${ld} -ne 1" ]; do
-    sleep 10
-    ld=`cat /proc/loadavg | echo "$(awk -F " " '{ print $1 }') > 50" | bc`
-    echo "ld - $ld"
-done
+fulload; 
+ld=`cat /proc/loadavg | echo "$(awk -F " " '{ print $1 }') > 50" | bc`
+echo $ld
+
+fulload; 
+ld=`cat /proc/loadavg | echo "$(awk -F " " '{ print $1 }') > 50" | bc`
+echo $ld
