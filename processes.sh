@@ -10,4 +10,5 @@ fulload() {
   dd if=/dev/zero of=/dev/null &
 };
 
-fulload; read; killall dd
+fulload
+#fulload; read; killall dd
